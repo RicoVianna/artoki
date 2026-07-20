@@ -19,6 +19,20 @@
 </head>
 <body>
     <!-- ============================================
+         LIGHTBOX / MODAL DE IMAGEM
+         ============================================ -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-fechar" id="lightbox-fechar">✕</button>
+        <div class="lightbox-conteudo">
+            <img src="" alt="" id="lightbox-imagem">
+            <div class="lightbox-info">
+                <h3 id="lightbox-titulo"></h3>
+                <p id="lightbox-categoria"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
          CABEÇALHO
          ============================================ -->
     <header class="cabecalho">
@@ -80,8 +94,7 @@
                         <label for="filtro-ano">Ano:</label>
                         <select id="filtro-ano">
                             <option value="todos">Todos os Anos</option>
-                            <option value="2025">2025</option>
-                            <option value="2024">2024</option>
+                            <!-- Os anos serão preenchidos automaticamente pelo JavaScript -->
                         </select>
                     </div>
                 </div>
@@ -270,6 +283,29 @@
                                 <label for="admin-ano">Ano:</label>
                                 <input type="number" id="admin-ano" placeholder="2025" min="2020" max="2030" required>
                             </div>
+
+                            <!-- NOVO: Orientação da folha -->
+                            <div class="campo">
+                                <label for="admin-orientacao">Orientação da Folha:</label>
+                                <select id="admin-orientacao">
+                                    <option value="paisagem">Deitada (Paisagem)</option>
+                                    <option value="retrato">Em Pé (Retrato)</option>
+                                    <option value="quadrado">Quadrada</option>
+                                </select>
+                            </div>
+
+                            <!-- NOVO: Tamanho da folha -->
+                            <div class="campo">
+                                <label for="admin-tamanho">Tamanho da Folha:</label>
+                                <select id="admin-tamanho">
+                                    <option value="A4">A4 (padrão)</option>
+                                    <option value="A3">A3</option>
+                                    <option value="A5">A5</option>
+                                    <option value="oficio">Ofício</option>
+                                    <option value="caderno">Folha de Caderno</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
                             
                             <div class="campo campo-full">
                                 <label for="admin-imagem">Imagem do Desenho:</label>
@@ -314,7 +350,7 @@
                                     <th>Título</th>
                                     <th>Categoria</th>
                                     <th>Ano</th>
-                                    <th>Materiais</th>
+                                    <th>Orientação</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -345,8 +381,8 @@
         <div class="redes-sociais">
             <p>Me segue nas redes!</p>
             <div class="links-redes">
-                <a href="https://instagram.com" target="_blank" class="link-rede instagram">📷 Instagram</a>
-                <a href="https://tiktok.com" target="_blank" class="link-rede tiktok">🎵 TikTok</a>
+                <a href="https://instagram.com/digotamaoki" target="_blank" class="link-rede instagram">📷 Instagram</a>
+                <a href="https://tiktok.com/@digo.tamaoki" target="_blank" class="link-rede tiktok">🎵 TikTok</a>
             </div>
         </div>
         <p>Feito com 💙 pelo ArtOki</p>

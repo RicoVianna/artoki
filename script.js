@@ -1,32 +1,14 @@
 // ============================================
-// ArtOki - Lógica Principal (Etapa 6)
-// Navegação, Galeria, Like, Contato, Admin CRUD
-// Módulo Comercial (Asaas) - PREPARADO MAS OCULTO
+// ArtOki - Lógica Principal (Etapa 6 + Melhorias)
+// Lightbox, Fita Adesiva, Orientação, Tamanho
 // ============================================
 
 const CONFIG = {
     ADMIN_PASSWORD: "artoiki2026!",
     APP_NAME: "ArtOki",
     APP_VERSION: "1.0.0",
-    
-    // ============================================
-    // FLAG DO MÓDULO COMERCIAL (Asaas)
-    // ============================================
-    // ⚠️ IMPORTANTE: Mantenha como 'false' até que
-    // a integração com o Asaas esteja configurada.
-    // Quando ativar, mude para 'true' e os preços
-    // e botões de compra aparecerão automaticamente.
-    // ============================================
-    MODULO_VENDAS_ATIVO: true,
-    
-    // Placeholder para futura configuração Asaas
-    // ASAAS_API_KEY: import.meta.env.VITE_ASAAS_API_KEY,
-    // ASAAS_API_URL: "https://api.asaas.com/v3"
+    MODULO_VENDAS_ATIVO: false,
 };
-
-// ============================================
-// 1. VARIÁVEIS GLOBAIS
-// ============================================
 
 let todosDesenhos = [];
 let filtroCategoria = "todas";
@@ -37,10 +19,6 @@ const ADMIN_LOGADO_KEY = "artoiki_admin_logado";
 let desenhosCurtidos = carregarLikes();
 let estaEditando = false;
 let imagemBase64 = null;
-
-// ============================================
-// 2. LOCALSTORAGE
-// ============================================
 
 function carregarLikes() {
     try {
@@ -92,7 +70,57 @@ function fazerLogoutAdmin() {
 }
 
 // ============================================
-// 3. NAVEGAÇÃO POR ABAS
+// LIGHTBOX
+// ============================================
+
+function configurarLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const btnFechar = document.getElementById('lightbox-fechar');
+    
+    if (!lightbox || !btnFechar) return;
+    
+    btnFechar.addEventListener('click', fecharLightbox);
+    
+    lightbox.addEventListener('click', (evento) => {
+        if (evento.target === lightbox) {
+            fecharLightbox();
+        }
+    });
+    
+    document.addEventListener('keydown', (evento) => {
+        if (evento.key === 'Escape') {
+            fecharLightbox();
+        }
+    });
+}
+
+function abrirLightbox(urlImagem, titulo, categoria) {
+    const lightbox = document.getElementById('lightbox');
+    const img = document.getElementById('lightbox-imagem');
+    const tituloEl = document.getElementById('lightbox-titulo');
+    const categoriaEl = document.getElementById('lightbox-categoria');
+    
+    if (!lightbox) return;
+    
+    img.src = urlImagem;
+    img.alt = titulo;
+    tituloEl.textContent = titulo;
+    categoriaEl.textContent = categoria;
+    
+    lightbox.classList.add('ativo');
+    document.body.style.overflow = 'hidden';
+}
+
+function fecharLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        lightbox.classList.remove('ativo');
+        document.body.style.overflow = '';
+    }
+}
+
+// ============================================
+// NAVEGAÇÃO
 // ============================================
 
 function configurarNavegacao() {
@@ -135,7 +163,7 @@ function configurarNavegacao() {
 }
 
 // ============================================
-// 4. CARREGAMENTO DOS DADOS
+// CARREGAMENTO DOS DADOS
 // ============================================
 
 async function carregarDados() {
@@ -163,7 +191,7 @@ async function carregarDados() {
 }
 
 // ============================================
-// 5. LÓGICA DOS FILTROS
+// FILTROS
 // ============================================
 
 function aplicarFiltros() {
@@ -190,7 +218,7 @@ function atualizarInfoResultado(quantidade, total) {
 }
 
 // ============================================
-// 6. RENDERIZAÇÃO DA GALERIA
+// RENDERIZAÇÃO DA GALERIA
 // ============================================
 
 function renderizarGaleria() {
@@ -243,12 +271,10 @@ function criarCardDesenho(desenho) {
     const textoBotao = jaCurtiu ? "❤️ Curtido!" : "🤍 Curtir";
     const likesAtual = jaCurtiu ? desenho.likes + 1 : desenho.likes;
     
-    // ============================================
-    // MÓDULO COMERCIAL (OCULTO POR PADRÃO)
-    // ============================================
-    // Quando CONFIG.MODULO_VENDAS_ATIVO for true,
-    // esta seção exibirá preço e botão de compra.
-    // ============================================
+    // Orientação da imagem (padrão: paisagem)
+    const orientacao = desenho.orientacao || 'paisagem';
+    
+    // MÓDULO COMERCIAL
     let htmlComercial = '';
     if (CONFIG.MODULO_VENDAS_ATIVO && desenho.comercial && desenho.comercial.disponivel_venda) {
         const precoFormatado = desenho.comercial.preco.toLocaleString('pt-BR', {
@@ -264,11 +290,9 @@ function criarCardDesenho(desenho) {
             </div>
         `;
     }
-    // Se o módulo estiver desativado, htmlComercial permanece vazio
-    // e nenhum elemento comercial é renderizado.
     
     card.innerHTML = `
-        <div class="card-imagem">
+        <div class="card-imagem ${orientacao}" onclick="abrirLightbox('${desenho.url_imagem}', '${desenho.titulo}', '${desenho.categoria}')">
             <span class="badge-categoria-img ${getClasseCategoria(desenho.categoria)}">
                 ${desenho.categoria}
             </span>
@@ -304,33 +328,21 @@ function criarCardDesenho(desenho) {
 }
 
 // ============================================
-// 7. FUNÇÕES DO MÓDULO COMERCIAL (FUTURO)
+// MÓDULO COMERCIAL
 // ============================================
 
-/**
- * Inicia o processo de compra de um desenho.
- * Será implementada na fase de integração com Asaas.
- * 
- * @param {string} idDesenho - ID do desenho a ser comprado
- */
 function iniciarCompra(idDesenho) {
     const desenho = todosDesenhos.find(d => d.id === idDesenho);
     if (!desenho || !desenho.comercial) return;
     
     console.log(`🛒 Iniciando compra do desenho: ${desenho.titulo}`);
     console.log(`💰 Preço: R$ ${desenho.comercial.preco.toFixed(2)}`);
-    console.log(`🔗 ID Produto Asaas: ${desenho.comercial.id_produto_asaas || 'Não configurado'}`);
-    
-    // Futura implementação:
-    // 1. Chamar API do Asaas para criar cobrança
-    // 2. Redirecionar para checkout do Asaas
-    // 3. Ou exibir modal de pagamento próprio
     
     alert(`🛒 Compra do desenho "${desenho.titulo}" será implementada em breve!\nPreço: R$ ${desenho.comercial.preco.toFixed(2)}`);
 }
 
 // ============================================
-// 8. INTERAÇÕES DO CARD
+// INTERAÇÕES DO CARD
 // ============================================
 
 function toggleMateriais(idDesenho) {
@@ -375,7 +387,7 @@ function toggleLike(idDesenho) {
 }
 
 // ============================================
-// 9. EVENT LISTENERS DOS FILTROS
+// FILTROS
 // ============================================
 
 function configurarFiltros() {
@@ -398,7 +410,7 @@ function configurarFiltros() {
 }
 
 // ============================================
-// 10. FORMULÁRIO DE CONTATO
+// CONTATO
 // ============================================
 
 function configurarFormularioContato() {
@@ -425,7 +437,7 @@ function configurarFormularioContato() {
 }
 
 // ============================================
-// 11. ÁREA ADMINISTRATIVA
+// ADMIN
 // ============================================
 
 function verificarSessaoAdmin() {
@@ -476,7 +488,7 @@ function configurarLoginAdmin() {
 }
 
 // ============================================
-// 12. CRUD DOS DESENHOS (ADMIN)
+// CRUD ADMIN
 // ============================================
 
 function configurarFormularioAdmin() {
@@ -528,8 +540,6 @@ function resetarFormularioAdmin() {
     document.getElementById('admin-preco').value = '';
     document.getElementById('admin-venda').checked = false;
     
-    estaEditando = false;
-    
     const preview = document.getElementById('preview-imagem');
     if (preview) preview.innerHTML = '';
     
@@ -541,6 +551,8 @@ function salvarDesenhoAdmin() {
     const titulo = document.getElementById('admin-titulo').value.trim();
     const categoria = document.getElementById('admin-categoria').value;
     const ano = parseInt(document.getElementById('admin-ano').value);
+    const orientacao = document.getElementById('admin-orientacao').value;
+    const tamanho = document.getElementById('admin-tamanho').value;
     const materiaisInput = document.getElementById('admin-materiais').value.trim();
     const precoInput = document.getElementById('admin-preco').value;
     const disponivelVenda = document.getElementById('admin-venda').checked;
@@ -560,6 +572,8 @@ function salvarDesenhoAdmin() {
             todosDesenhos[index].titulo = titulo;
             todosDesenhos[index].categoria = categoria;
             todosDesenhos[index].ano = ano;
+            todosDesenhos[index].orientacao = orientacao;
+            todosDesenhos[index].tamanho = tamanho;
             todosDesenhos[index].materiais_usados = materiais;
             todosDesenhos[index].comercial.preco = preco;
             todosDesenhos[index].comercial.disponivel_venda = disponivelVenda;
@@ -575,6 +589,8 @@ function salvarDesenhoAdmin() {
             titulo: titulo,
             categoria: categoria,
             ano: ano,
+            orientacao: orientacao,
+            tamanho: tamanho,
             url_imagem: imagemBase64 || "https://placehold.co/400x300/9CA3AF/FFFFFF?text=Sem+Imagem",
             materiais_usados: materiais,
             likes: 0,
@@ -604,7 +620,11 @@ function editarDesenho(idDesenho) {
     document.getElementById('admin-titulo').value = desenho.titulo;
     document.getElementById('admin-categoria').value = desenho.categoria;
     document.getElementById('admin-ano').value = desenho.ano;
+    document.getElementById('admin-orientacao').value = desenho.orientacao || 'paisagem';
+    document.getElementById('admin-tamanho').value = desenho.tamanho || 'A4';
     document.getElementById('admin-materiais').value = desenho.materiais_usados.join(', ');
+    document.getElementById('admin-preco').value = desenho.comercial ? desenho.comercial.preco : '';
+    document.getElementById('admin-venda').checked = desenho.comercial ? desenho.comercial.disponivel_venda : false;
     document.getElementById('editando-id').value = desenho.id;
     
     if (desenho.url_imagem && !desenho.url_imagem.includes('placehold.co')) {
@@ -615,8 +635,6 @@ function editarDesenho(idDesenho) {
     document.getElementById('titulo-formulario').textContent = '✏️ Editar Desenho';
     document.getElementById('btn-salvar').textContent = '💾 Atualizar Desenho';
     document.getElementById('btn-cancelar').style.display = 'inline-block';
-    document.getElementById('admin-preco').value = desenho.comercial ? desenho.comercial.preco : '';
-    document.getElementById('admin-venda').checked = desenho.comercial ? desenho.comercial.disponivel_venda : false;
     
     estaEditando = true;
     console.log(`📝 Editando desenho: ${idDesenho}`);
@@ -658,12 +676,18 @@ function renderizarTabelaAdmin() {
     
     todosDesenhos.forEach(desenho => {
         const tr = document.createElement('tr');
+        const orientacaoLabel = {
+            'paisagem': 'Deitada',
+            'retrato': 'Em Pé',
+            'quadrado': 'Quadrada'
+        }[desenho.orientacao || 'paisagem'] || 'Deitada';
+        
         tr.innerHTML = `
             <td><img src="${desenho.url_imagem}" alt="${desenho.titulo}" loading="lazy"></td>
             <td><strong>${desenho.titulo}</strong></td>
             <td><span class="badge-categoria-tabela ${getClasseCategoria(desenho.categoria)}">${desenho.categoria}</span></td>
             <td>${desenho.ano}</td>
-            <td>${desenho.materiais_usados.join(', ')}</td>
+            <td>${orientacaoLabel}</td>
             <td class="acoes">
                 <button class="btn-editar" onclick="editarDesenho('${desenho.id}')">✏️ Editar</button>
                 <button class="btn-excluir" onclick="excluirDesenho('${desenho.id}')">🗑️ Excluir</button>
@@ -673,8 +697,51 @@ function renderizarTabelaAdmin() {
     });
 }
 
+/**
+ * Preenche o select de anos dinamicamente de 2020 até o ano atual.
+ * Atualiza automaticamente quando mudar o ano.
+ */
+function preencherAnosFiltro() {
+    const selectAno = document.getElementById('filtro-ano');
+    if (!selectAno) return;
+    
+    const anoAtual = new Date().getFullYear();
+    const anoInicial = 2020;
+    
+    // Limpa as opções existentes (mantém "Todos os Anos")
+    selectAno.innerHTML = '<option value="todos">Todos os Anos</option>';
+    
+    // Adiciona os anos de 2020 até o ano atual, em ordem decrescente
+    for (let ano = anoAtual; ano >= anoInicial; ano--) {
+        const option = document.createElement('option');
+        option.value = ano;
+        option.textContent = ano;
+        selectAno.appendChild(option);
+    }
+    
+    console.log(`📅 Anos do filtro atualizados: ${anoInicial} a ${anoAtual}`);
+}
+
 // ============================================
-// 13. FUNÇÕES AUXILIARES
+// SERVICE WORKER
+// ============================================
+
+function registrarServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then((registro) => {
+                console.log('📱 Service Worker registrado com sucesso!', registro.scope);
+            })
+            .catch((erro) => {
+                console.warn('⚠️ Falha ao registrar Service Worker:', erro);
+            });
+    } else {
+        console.log('⚠️ PWA: Service Worker não suportado neste navegador');
+    }
+}
+
+// ============================================
+// AUXILIARES
 // ============================================
 
 function mostrarErro(mensagem) {
@@ -693,7 +760,7 @@ function validarSenhaAdmin(senhaDigitada) {
 }
 
 // ============================================
-// 14. INICIALIZAÇÃO
+// INICIALIZAÇÃO
 // ============================================
 
 function inicializarApp() {
@@ -701,13 +768,15 @@ function inicializarApp() {
     console.log(`Versão: ${CONFIG.APP_VERSION}`);
     console.log(`Módulo de vendas: ${CONFIG.MODULO_VENDAS_ATIVO ? 'ATIVO' : 'INATIVO (oculto)'}`);
     console.log(`Likes salvos: ${desenhosCurtidos.size} desenhos`);
-    
-    registrarServiceWorker();  // ← esta linha deve estar aqui
+
+    preencherAnosFiltro();
+    registrarServiceWorker();
     configurarNavegacao();
     configurarFiltros();
     configurarFormularioContato();
     configurarLoginAdmin();
     configurarFormularioAdmin();
+    configurarLightbox();
     carregarDados();
 }
 
@@ -719,26 +788,11 @@ window.toggleLike = toggleLike;
 window.editarDesenho = editarDesenho;
 window.excluirDesenho = excluirDesenho;
 window.iniciarCompra = iniciarCompra;
+window.abrirLightbox = abrirLightbox;
+window.fecharLightbox = fecharLightbox;
 
 window.ArtOki = {
     validarSenhaAdmin,
     CONFIG,
     aplicarFiltros
 };
-
-/**
- * Registra o Service Worker para transformar o site em PWA.
- */
-function registrarServiceWorker() {
-    if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js')
-            .then((registro) => {
-                console.log('📱 Service Worker registrado com sucesso!', registro.scope);
-            })
-            .catch((erro) => {
-                console.warn('⚠️ Falha ao registrar Service Worker:', erro);
-            });
-    } else {
-        console.log('⚠️ PWA: Service Worker não suportado neste navegador');
-    }
-}
