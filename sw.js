@@ -11,7 +11,7 @@ const URLS_PARA_CACHE = [
     '/manifest.json',
     '/dados.json',
     '/icons/icon-144x144.png',
-    '/icons/icon-192x192.png',
+    '/icons/icon-192x192.jpg',
     '/icons/icon-512x512.png'
 ];
 
