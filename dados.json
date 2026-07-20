@@ -1,0 +1,148 @@
+{
+    "desenhos": [
+        {
+        "id": "desenho-001",
+        "titulo": "Goku Super Saiyajin",
+        "categoria": "Anime",
+        "ano": 2025,
+        "url_imagem": "https://placehold.co/400x300/3B82F6/FFFFFF?text=Goku+SSJ",
+        "materiais_usados": ["Marcador Copic", "Caneta Nanquim 0.5"],
+        "likes": 12,
+        "comentarios": [
+            {
+            "autor": "Pedro",
+            "texto": "Ficou incrível o cabelo dourado!",
+            "data": "2026-07-15"
+            }
+        ],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        },
+        {
+            "id": "desenho-002",
+            "titulo": "Cristo Redentor",
+            "categoria": "Religiosos",
+            "ano": 2025,
+            "url_imagem": "https://placehold.co/400x300/22C55E/FFFFFF?text=Cristo",
+            "materiais_usados": ["Lápis de Cor", "Giz de Cera"],
+            "likes": 8,
+            "comentarios": [],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        },
+        {
+            "id": "desenho-003",
+            "titulo": "Neymar no Santos",
+            "categoria": "Esportes",
+            "ano": 2024,
+            "url_imagem": "https://placehold.co/400x300/EF4444/FFFFFF?text=Neymar",
+            "materiais_usados": ["Caneta Bic", "Papel Canson"],
+            "likes": 15,
+            "comentarios": [
+                {
+                "autor": "João",
+                "texto": "Muito bom o detalhe da camisa!",
+                "data": "2026-07-10"
+                }
+            ],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        },
+        {
+            "id": "desenho-004",
+            "titulo": "Por do Sol na Praia",
+            "categoria": "Paisagens",
+            "ano": 2025,
+            "url_imagem": "https://placehold.co/400x300/F59E0B/FFFFFF?text=Por+do+Sol",
+            "materiais_usados": ["Aquarela", "Pincel Sintético"],
+            "likes": 20,
+            "comentarios": [],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        },
+        {
+            "id": "desenho-005",
+            "titulo": "Homem-Aranha",
+            "categoria": "Heróis e Aventuras",
+            "ano": 2024,
+            "url_imagem": "https://placehold.co/400x300/EF4444/FFFFFF?text=Homem-Aranha",
+            "materiais_usados": ["Marcador Copic", "Caneta Nanquim 0.3"],
+            "likes": 25,
+            "comentarios": [
+                {
+                "autor": "Maria",
+                "texto": "A teia ficou perfeita!",
+                "data": "2026-07-18"
+                }
+            ],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        },
+            {
+            "id": "desenho-006",
+            "titulo": "Tigre na Selva",
+            "categoria": "Mundo Animal / Natureza",
+            "ano": 2025,
+            "url_imagem": "https://placehold.co/400x300/16A34A/FFFFFF?text=Tigre",
+            "materiais_usados": ["Lápis Grafite", "Papel Canson"],
+            "likes": 18,
+            "comentarios": [],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        },
+        {
+            "id": "desenho-007",
+            "titulo": "Bob Esponja",
+            "categoria": "Cartoons e Fantasia",
+            "ano": 2024,
+            "url_imagem": "https://placehold.co/400x300/FACC15/333333?text=Bob+Esponja",
+            "materiais_usados": ["Canetinha Hidrocor", "Papel Sulfite"],
+            "likes": 30,
+            "comentarios": [
+            {
+                "autor": "Ana",
+                "texto": "Muito engraçado!",
+                "data": "2026-07-12"
+            }
+            ],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        },
+        {
+            "id": "desenho-008",
+            "titulo": "Dragão de Fogo",
+            "categoria": "Cartoons e Fantasia",
+            "ano": 2025,
+            "url_imagem": "https://placehold.co/400x300/DC2626/FFFFFF?text=Dragão",
+            "materiais_usados": ["Marcador Copic", "Caneta Nanquim 0.8"],
+            "likes": 22,
+            "comentarios": [],
+            "comercial": {
+                "disponivel_venda": false,
+                "preco": 0.00,
+                "id_produto_asaas": ""
+            }
+        }
+    ]
+}

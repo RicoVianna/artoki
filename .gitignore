@@ -1,0 +1,26 @@
+# ============================================
+# ArtOki - Arquivos ignorados pelo Git
+# ============================================
+
+# Variáveis de ambiente (senhas, chaves de API)
+.env
+
+# Logs
+*.log
+logs/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Editores de código
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependências (se instalar no futuro)
+node_modules/
+
+# Build (se usar Vite no futuro)
+dist/

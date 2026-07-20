@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3B82F6">
+    <meta name="description" content="ArtOki - Galeria de arte lúdica e interativa">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <title>ArtOki - Galeria de Arte</title>
+</head>
+<body>
+    <!-- ============================================
+         CABEÇALHO
+         ============================================ -->
+    <header class="cabecalho">
+        <div class="cabecalho-decoracao">
+            <span class="estrela">⭐</span>
+            <span class="pincel">🖌️</span>
+            <span class="estrela">⭐</span>
+        </div>
+        <h1 class="logo">🎨 ArtOki</h1>
+        <p class="subtitulo">A galeria de arte mais divertida do mundo!</p>
+        <div class="cabecalho-decoracao">
+            <span class="paleta">🎨</span>
+            <span class="estrela">⭐</span>
+            <span class="paleta">🖌️</span>
+        </div>
+    </header>
+
+    <!-- Menu de Navegação Principal -->
+    <nav class="menu-navegacao" id="menu-navegacao">
+        <button class="btn-menu-mobile" id="btn-menu-mobile" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="lista-menu" id="lista-menu">
+            <li><a href="#" class="link-menu ativo" data-aba="galeria">🏠 Home / Galeria</a></li>
+            <li><a href="#" class="link-menu" data-aba="aprenda">📚 Aprenda Comigo</a></li>
+            <li><a href="#" class="link-menu" data-aba="bastidores">🎬 Bastidores</a></li>
+            <li><a href="#" class="link-menu" data-aba="contato">💬 Fale Comigo</a></li>
+            <li><a href="#" class="link-menu link-admin" data-aba="admin">🔐 Admin</a></li>
+        </ul>
+    </nav>
+
+    <!-- ============================================
+         CONTEÚDO PRINCIPAL (ABAS)
+         ============================================ -->
+    <main class="conteudo-principal">
+
+        <!-- === ABA: GALERIA === -->
+        <section class="aba ativa" id="aba-galeria">
+            <section class="secao-filtros">
+                <h2 class="titulo-filtros">🔍 Encontre seus desenhos favoritos</h2>
+                <div class="barra-filtros">
+                    <div class="grupo-filtro">
+                        <label for="filtro-categoria">Categoria:</label>
+                        <select id="filtro-categoria">
+                            <option value="todas">Todas as Categorias</option>
+                            <option value="Anime">Anime</option>
+                            <option value="Religiosos">Religiosos</option>
+                            <option value="Esportes">Esportes</option>
+                            <option value="Paisagens">Paisagens</option>
+                            <option value="Heróis e Aventuras">Heróis e Aventuras</option>
+                            <option value="Mundo Animal / Natureza">Mundo Animal / Natureza</option>
+                            <option value="Cartoons e Fantasia">Cartoons e Fantasia</option>
+                        </select>
+                    </div>
+                    <div class="grupo-filtro">
+                        <label for="filtro-ano">Ano:</label>
+                        <select id="filtro-ano">
+                            <option value="todos">Todos os Anos</option>
+                            <option value="2025">2025</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                </div>
+                <p class="info-resultado" id="info-resultado">Mostrando todos os desenhos</p>
+            </section>
+
+            <section class="secao-galeria">
+                <div class="grid-galeria" id="grid-galeria"></div>
+            </section>
+        </section>
+
+        <!-- === ABA: APRENDA COMIGO === -->
+        <section class="aba" id="aba-aprenda">
+            <div class="cabecalho-aba">
+                <h2>📚 Aprenda Comigo</h2>
+                <p>Dicas rápidas para você começar a desenhar também!</p>
+            </div>
+            <div class="grid-dicas">
+                <article class="card-dica">
+                    <div class="dica-icone">✏️</div>
+                    <h3>Comece com Lápis</h3>
+                    <p>Sempre use lápis para fazer o rascunho antes de passar a caneta. Assim você pode apagar e corrigir sem medo!</p>
+                </article>
+                <article class="card-dica">
+                    <div class="dica-icone">👁️</div>
+                    <h3>Observe Antes de Desenhar</h3>
+                    <p>Olhe bem para o que você quer desenhar. Preste atenção nas formas, tamanhos e proporções antes de colocar no papel.</p>
+                </article>
+                <article class="card-dica">
+                    <div class="dica-icone">🔄</div>
+                    <h3>Pratique Todo Dia</h3>
+                    <p>Desenhe um pouquinho todos os dias, mesmo que seja só 15 minutos. A prática é o segredo para melhorar!</p>
+                </article>
+                <article class="card-dica">
+                    <div class="dica-icone">🎨</div>
+                    <h3>Use Referências</h3>
+                    <p>Olhe fotos e imagens na internet para se inspirar. Não é copiar — é aprender com o que já existe!</p>
+                </article>
+                <article class="card-dica">
+                    <div class="dica-icone">✨</div>
+                    <h3>Não Tenha Medo de Errar</h3>
+                    <p>Cada rabisco errado te ensina algo novo. Os melhores artistas do mundo erram o tempo todo!</p>
+                </article>
+                <article class="card-dica">
+                    <div class="dica-icone">🖌️</div>
+                    <h3>Cuide dos Seus Materiais</h3>
+                    <p>Guarde suas canetas com a tampa fechada e seus lápis apontados. Materiais bem cuidados duram mais!</p>
+                </article>
+            </div>
+            <div class="secao-videos">
+                <h3>🎥 Vídeos em Breve!</h3>
+                <p>Em breve teremos vídeos curtos mostrando o passo a passo dos desenhos. Fique ligado!</p>
+                <div class="placeholder-video">
+                    <span>▶️</span>
+                    <p>Em breve...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- === ABA: BASTIDORES === -->
+        <section class="aba" id="aba-bastidores">
+            <div class="cabecalho-aba">
+                <h2>🎬 Bastidores</h2>
+                <p>Um pouquinho do meu cantinho de criação e da minha rotina!</p>
+            </div>
+            <div class="grid-bastidores">
+                <figure class="foto-bastidores">
+                    <img src="https://placehold.co/400x300/3B82F6/FFFFFF?text=Meu+Cantinho" alt="Cantinho de criação">
+                    <figcaption>🖌️ Meu cantinho de desenho</figcaption>
+                </figure>
+                <figure class="foto-bastidores">
+                    <img src="https://placehold.co/400x300/22C55E/FFFFFF?text=Rascunhos" alt="Rascunhos">
+                    <figcaption>✏️ Rascunhos e ideias no papel</figcaption>
+                </figure>
+                <figure class="foto-bastidores">
+                    <img src="https://placehold.co/400x300/FACC15/333333?text=Materiais" alt="Materiais de arte">
+                    <figcaption>🎨 Minha coleção de materiais</figcaption>
+                </figure>
+                <figure class="foto-bastidores">
+                    <img src="https://placehold.co/400x300/EF4444/FFFFFF?text=Processo" alt="Processo de desenho">
+                    <figcaption>📸 O processo de criação</figcaption>
+                </figure>
+                <figure class="foto-bastidores">
+                    <img src="https://placehold.co/400x300/8B5CF6/FFFFFF?text=Prêmios" alt="Conquistas">
+                    <figcaption>🏆 Conquistas e reconhecimentos</figcaption>
+                </figure>
+                <figure class="foto-bastidores">
+                    <img src="https://placehold.co/400x300/F97316/FFFFFF?text=Família" alt="Família">
+                    <figcaption>👨‍👩‍👧 Família apoiando a arte</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- === ABA: FALE COMIGO === -->
+        <section class="aba" id="aba-contato">
+            <div class="cabecalho-aba">
+                <h2>💬 Fale Comigo</h2>
+                <p>Quer mandar um recado, elogiar um desenho ou falar sobre arte? Me escreve!</p>
+            </div>
+            <div class="grid-contato">
+                <div class="card-contato">
+                    <h3>📝 Envie uma Mensagem</h3>
+                    <form class="formulario-contato" id="formulario-contato">
+                        <div class="campo">
+                            <label for="nome">Seu Nome:</label>
+                            <input type="text" id="nome" name="nome" placeholder="Como você se chama?" required>
+                        </div>
+                        <div class="campo">
+                            <label for="email">E-mail (opcional):</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com">
+                        </div>
+                        <div class="campo">
+                            <label for="mensagem">Sua Mensagem:</label>
+                            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva aqui o que você quer me dizer..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-enviar">📨 Enviar Mensagem</button>
+                    </form>
+                </div>
+                <div class="card-contato card-whatsapp">
+                    <h3>📱 WhatsApp</h3>
+                    <p>Prefere conversar pelo WhatsApp? É só clicar no botão abaixo!</p>
+                    <a href="https://wa.me/5511999999999?text=Oi!%20Vi%20o%20ArtOki%20e%20queria%20falar%20sobre%20os%20desenhos!" target="_blank" class="btn-whatsapp">💬 Falar no WhatsApp</a>
+                    <p class="aviso-whatsapp">⚠️ Substitua o número acima no código pelo número real do responsável.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- === ABA: ADMIN (ÁREA RESTRITA) === -->
+        <section class="aba" id="aba-admin">
+            
+            <!-- Tela de Login -->
+            <div class="tela-login" id="tela-login">
+                <div class="card-login">
+                    <div class="login-icone">🔐</div>
+                    <h2>Área do Administrador</h2>
+                    <p>Digite a senha para acessar o painel de gerenciamento.</p>
+                    
+                    <form class="formulario-login" id="formulario-login">
+                        <div class="campo">
+                            <label for="senha-admin">Senha:</label>
+                            <input type="password" id="senha-admin" placeholder="Digite a senha..." required>
+                        </div>
+                        <button type="submit" class="btn-login">🔓 Entrar</button>
+                    </form>
+                    
+                    <p class="login-aviso">⚠️ Esta área é exclusiva para o artista e administradores.</p>
+                </div>
+            </div>
+
+            <!-- Painel Administrativo (oculto até login) -->
+            <div class="painel-admin" id="painel-admin" style="display: none;">
+                
+                <div class="cabecalho-painel">
+                    <h2>🛠️ Painel Administrativo</h2>
+                    <button class="btn-sair" id="btn-sair">🚪 Sair</button>
+                </div>
+
+                <!-- Formulário de Adicionar/Editar -->
+                <div class="card-formulario-admin">
+                    <h3 id="titulo-formulario">➕ Adicionar Novo Desenho</h3>
+                    
+                    <form class="formulario-admin" id="formulario-admin">
+                        <input type="hidden" id="editando-id" value="">
+                        
+                        <div class="grid-formulario">
+                            <div class="campo">
+                                <label for="admin-titulo">Título do Desenho:</label>
+                                <input type="text" id="admin-titulo" placeholder="Ex: Goku Super Saiyajin" required>
+                            </div>
+                            
+                            <div class="campo">
+                                <label for="admin-categoria">Categoria:</label>
+                                <select id="admin-categoria" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="Anime">Anime</option>
+                                    <option value="Religiosos">Religiosos</option>
+                                    <option value="Esportes">Esportes</option>
+                                    <option value="Paisagens">Paisagens</option>
+                                    <option value="Heróis e Aventuras">Heróis e Aventuras</option>
+                                    <option value="Mundo Animal / Natureza">Mundo Animal / Natureza</option>
+                                    <option value="Cartoons e Fantasia">Cartoons e Fantasia</option>
+                                </select>
+                            </div>
+                            
+                            <div class="campo">
+                                <label for="admin-ano">Ano:</label>
+                                <input type="number" id="admin-ano" placeholder="2025" min="2020" max="2030" required>
+                            </div>
+                            
+                            <div class="campo campo-full">
+                                <label for="admin-imagem">Imagem do Desenho:</label>
+                                <input type="file" id="admin-imagem" accept="image/*">
+                                <p class="campo-ajuda">📷 Selecione uma foto do desenho (será convertida automaticamente)</p>
+                                <div class="preview-imagem" id="preview-imagem"></div>
+                            </div>
+                            
+                            <div class="campo campo-full">
+                                <label for="admin-materiais">Materiais Usados (separados por vírgula):</label>
+                                <input type="text" id="admin-materiais" placeholder="Ex: Marcador Copic, Caneta Nanquim 0.5" required>
+                            </div>
+
+                            <div class="campo">
+                                <label for="admin-preco">Preço (R$):</label>
+                                <input type="number" id="admin-preco" placeholder="0.00" min="0" step="0.01">
+                            </div>
+
+                            <div class="campo">
+                                <label for="admin-venda">
+                                    <input type="checkbox" id="admin-venda" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                    Disponível para venda
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="botoes-formulario">
+                            <button type="submit" class="btn-salvar" id="btn-salvar">💾 Salvar Desenho</button>
+                            <button type="button" class="btn-cancelar" id="btn-cancelar" style="display: none;">❌ Cancelar Edição</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Lista de Desenhos no Painel -->
+                <div class="secao-lista-admin">
+                    <h3>📋 Desenhos Cadastrados</h3>
+                    <div class="tabela-admin-container">
+                        <table class="tabela-admin" id="tabela-admin">
+                            <thead>
+                                <tr>
+                                    <th>Imagem</th>
+                                    <th>Título</th>
+                                    <th>Categoria</th>
+                                    <th>Ano</th>
+                                    <th>Materiais</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-admin-body">
+                                <!-- Preenchido pelo JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="sem-desenhos-admin" id="sem-desenhos-admin" style="display: none;">
+                        😕 Nenhum desenho cadastrado ainda.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================
+         RODAPÉ
+         ============================================ -->
+    <footer class="rodape">
+        <div class="rodape-decoracao">
+            <span>🎨</span>
+            <span>⭐</span>
+            <span>🖌️</span>
+        </div>
+        <div class="redes-sociais">
+            <p>Me segue nas redes!</p>
+            <div class="links-redes">
+                <a href="https://instagram.com" target="_blank" class="link-rede instagram">📷 Instagram</a>
+                <a href="https://tiktok.com" target="_blank" class="link-rede tiktok">🎵 TikTok</a>
+            </div>
+        </div>
+        <p>Feito com 💙 pelo ArtOki</p>
+        <p class="rodape-ano">2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
