@@ -263,6 +263,7 @@ async function carregarDados() {
 
         // Renderiza tabelas do admin após dados carregados
         renderizarTabelaAulas();
+        renderizarTabelaBastidores();
 
     } catch (erro) {
         console.error("❌ Erro ao carregar dados:", erro);
@@ -1067,6 +1068,7 @@ function inicializarApp() {
     configurarFormularioAdmin();
     configurarAbasAdmin();
     configurarEditorAulas();
+    configurarEditorBastidores();
     configurarLightbox();
     
     // Carrega dados e renderiza tabelas após carregar
@@ -1115,8 +1117,6 @@ let aulaSendoEditada = null;
 
 function configurarEditorAulas() {
     const formularioAula = document.getElementById('formulario-aula');
-    const tabelaAulasBody = document.getElementById('tabela-aulas-body');
-    const semAulas = document.getElementById('sem-aulas-admin');
     const editorConteudo = document.getElementById('editor-conteudo-aula');
     const btnFecharEditor = document.getElementById('btn-fechar-editor');
     const btnAdicionarPasso = document.getElementById('btn-adicionar-passo');
@@ -1143,8 +1143,12 @@ function configurarEditorAulas() {
             adicionarPassoAula();
         });
     }
+    
     // Sempre começa em modo de criação (formulário limpo)
     resetarFormularioAula();
+    
+    // Renderiza tabela de aulas
+    renderizarTabelaAulas();
 }
 
 function renderizarTabelaAulas() {
@@ -1182,6 +1186,219 @@ function renderizarTabelaAulas() {
         tbody.appendChild(tr);
     });
 }
+
+// ============================================
+// EDITOR DE BASTIDORES (ADMIN)
+// ============================================
+
+let bastidorSendoEditado = null;
+
+function configurarEditorBastidores() {
+    const formularioBastidor = document.getElementById('formulario-bastidor');
+    const btnFecharEditor = document.getElementById('btn-fechar-editor-fotos');
+    const btnAdicionarFoto = document.getElementById('btn-adicionar-foto');
+    
+    // Salvar novo bastidor
+    if (formularioBastidor) {
+        formularioBastidor.addEventListener('submit', (evento) => {
+            evento.preventDefault();
+            salvarBastidorAdmin();
+        });
+    }
+    
+    // Fechar editor
+    if (btnFecharEditor) {
+        btnFecharEditor.addEventListener('click', () => {
+            document.getElementById('editor-fotos-bastidor').style.display = 'none';
+            bastidorSendoEditado = null;
+        });
+    }
+    
+    // Adicionar foto
+    if (btnAdicionarFoto) {
+        btnAdicionarFoto.addEventListener('click', () => {
+            adicionarFotoBastidor();
+        });
+    }
+    
+    // Sempre começa em modo de criação
+    resetarFormularioBastidor();
+    renderizarTabelaBastidores();
+}
+
+function renderizarTabelaBastidores() {
+    const tbody = document.getElementById('tabela-bastidores-body');
+    const semBastidores = document.getElementById('sem-bastidores-admin');
+    const tabela = document.getElementById('tabela-bastidores');
+    
+    if (!tbody) return;
+    
+    tbody.innerHTML = '';
+    
+    if (todosBastidores.length === 0) {
+        if (tabela) tabela.style.display = 'none';
+        if (semBastidores) semBastidores.style.display = 'block';
+        return;
+    }
+    
+    if (tabela) tabela.style.display = 'table';
+    if (semBastidores) semBastidores.style.display = 'none';
+    
+    todosBastidores.forEach(bastidor => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><img src="${bastidor.imagem_capa}" alt="${bastidor.titulo}" loading="lazy" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;"></td>
+            <td><strong>${bastidor.titulo}</strong></td>
+            <td class="acoes">
+                <button class="btn-editar-conteudo" onclick="abrirEditorFotos('${bastidor.id}')">🖼️ Fotos</button>
+                <button class="btn-editar" onclick="editarBastidorAdmin('${bastidor.id}')">✏️ Editar</button>
+                <button class="btn-excluir" onclick="excluirBastidorAdmin('${bastidor.id}')">🗑️ Excluir</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function abrirEditorFotos(idBastidor) {
+    const bastidor = todosBastidores.find(b => b.id === idBastidor);
+    if (!bastidor) return;
+    
+    bastidorSendoEditado = idBastidor;
+    const editor = document.getElementById('editor-fotos-bastidor');
+    const tituloEdicao = document.getElementById('titulo-bastidor-edicao');
+    const listaFotos = document.getElementById('lista-fotos-bastidor');
+    
+    if (tituloEdicao) tituloEdicao.textContent = `Editando: ${bastidor.titulo}`;
+    
+    // Renderiza fotos existentes
+    listaFotos.innerHTML = '';
+    if (bastidor.fotos && bastidor.fotos.length > 0) {
+        bastidor.fotos.forEach((foto, index) => {
+            const div = document.createElement('div');
+            div.className = 'passo-aula-item';
+            div.innerHTML = `
+                <span class="numero-passo-lista">${index + 1}</span>
+                <div class="conteudo-passo-lista">
+                    <img src="${foto.url}" alt="${foto.legenda}" style="max-width: 200px; border-radius: 8px; margin-bottom: 0.5rem;">
+                    <p>${foto.legenda}</p>
+                </div>
+            `;
+            listaFotos.appendChild(div);
+        });
+    } else {
+        listaFotos.innerHTML = '<p style="text-align: center; color: #9CA3AF; padding: 2rem;">Nenhuma foto adicionada ainda.</p>';
+    }
+    
+    if (editor) {
+        editor.style.display = 'block';
+        editor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function salvarBastidorAdmin() {
+    const titulo = document.getElementById('bastidor-titulo').value.trim();
+    const descricao = document.getElementById('bastidor-descricao').value.trim();
+    
+    if (!titulo || !descricao) {
+        alert('⚠️ Preencha todos os campos obrigatórios!');
+        return;
+    }
+    
+    const novoId = `bastidor-${Date.now()}`;
+    const novoBastidor = {
+        id: novoId,
+        titulo: titulo,
+        descricao: descricao,
+        imagem_capa: 'https://placehold.co/400x300/3B82F6/FFFFFF?text=Bastidor',
+        fotos: [],
+        ordem: todosBastidores.length + 1,
+        ativo: true
+    };
+    
+    todosBastidores.push(novoBastidor);
+    salvarBastidoresNoStorage();
+    renderizarTabelaBastidores();
+    
+    document.getElementById('formulario-bastidor').reset();
+    
+    alert('✅ Bastidor adicionado com sucesso! Agora clique em "🖼️ Fotos" para adicionar imagens.');
+}
+
+function editarBastidorAdmin(idBastidor) {
+    const bastidor = todosBastidores.find(b => b.id === idBastidor);
+    if (!bastidor) return;
+    
+    document.getElementById('bastidor-titulo').value = bastidor.titulo;
+    document.getElementById('bastidor-descricao').value = bastidor.descricao;
+    document.getElementById('editando-id-bastidor').value = bastidor.id;
+    document.getElementById('titulo-formulario-bastidor').textContent = '✏️ Editar Bastidor';
+    document.getElementById('btn-salvar-bastidor').textContent = '💾 Atualizar Bastidor';
+    
+    const btnCancelar = document.getElementById('btn-cancelar-bastidor');
+    if (btnCancelar) btnCancelar.style.display = 'inline-block';
+    
+    document.querySelector('.card-formulario-admin').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function excluirBastidorAdmin(idBastidor) {
+    if (!confirm('🗑️ Tem certeza que deseja excluir este bastidor?')) return;
+    
+    todosBastidores = todosBastidores.filter(b => b.id !== idBastidor);
+    salvarBastidoresNoStorage();
+    renderizarTabelaBastidores();
+    
+    const editor = document.getElementById('editor-fotos-bastidor');
+    if (editor) editor.style.display = 'none';
+    bastidorSendoEditado = null;
+    
+    alert('🗑️ Bastidor excluído com sucesso!');
+}
+
+function adicionarFotoBastidor() {
+    if (!bastidorSendoEditado) return;
+    
+    const url = document.getElementById('foto-url').value.trim();
+    const legenda = document.getElementById('foto-legenda').value.trim();
+    
+    if (!url || !legenda) {
+        alert('⚠️ Preencha a URL e a legenda da foto!');
+        return;
+    }
+    
+    const bastidor = todosBastidores.find(b => b.id === bastidorSendoEditado);
+    if (!bastidor) return;
+    
+    bastidor.fotos.push({
+        url: url,
+        legenda: legenda
+    });
+    
+    salvarBastidoresNoStorage();
+    
+    document.getElementById('foto-url').value = '';
+    document.getElementById('foto-legenda').value = '';
+    
+    abrirEditorFotos(bastidorSendoEditado);
+}
+
+function resetarFormularioBastidor() {
+    const formulario = document.getElementById('formulario-bastidor');
+    const tituloForm = document.getElementById('titulo-formulario-bastidor');
+    const btnSalvar = document.getElementById('btn-salvar-bastidor');
+    const btnCancelar = document.getElementById('btn-cancelar-bastidor');
+    const editandoId = document.getElementById('editando-id-bastidor');
+    
+    if (formulario) formulario.reset();
+    if (tituloForm) tituloForm.textContent = '➕ Adicionar Novo Bastidor';
+    if (btnSalvar) btnSalvar.textContent = '💾 Salvar Bastidor';
+    if (btnCancelar) btnCancelar.style.display = 'none';
+    if (editandoId) editandoId.value = '';
+}
+
+// Torna funções globais
+window.abrirEditorFotos = abrirEditorFotos;
+window.editarBastidorAdmin = editarBastidorAdmin;
+window.excluirBastidorAdmin = excluirBastidorAdmin;
 
 function abrirEditorConteudo(idAula) {
     const aula = todasAulas.find(a => a.id === idAula);
