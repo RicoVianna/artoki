@@ -1073,6 +1073,11 @@ function inicializarApp() {
     
     // Carrega dados e renderiza tabelas após carregar
     carregarDados();
+
+    // Limpa login ao fechar a aba/janela
+    window.addEventListener('beforeunload', () => {
+        fazerLogoutAdmin();
+    });
 }
 
 document.addEventListener('DOMContentLoaded', inicializarApp);
