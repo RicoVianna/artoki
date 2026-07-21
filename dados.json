@@ -1,20 +1,20 @@
 {
     "desenhos": [
         {
-        "id": "desenho-001",
-        "titulo": "Goku Super Saiyajin",
-        "categoria": "Anime",
-        "ano": 2025,
-        "url_imagem": "https://placehold.co/400x300/3B82F6/FFFFFF?text=Goku+SSJ",
-        "materiais_usados": ["Marcador Copic", "Caneta Nanquim 0.5"],
-        "likes": 12,
-        "comentarios": [
-            {
-            "autor": "Pedro",
-            "texto": "Ficou incrível o cabelo dourado!",
-            "data": "2026-07-15"
-            }
-        ],
+            "id": "desenho-001",
+            "titulo": "Goku Super Saiyajin",
+            "categoria": "Anime",
+            "ano": 2025,
+            "url_imagem": "https://placehold.co/400x300/3B82F6/FFFFFF?text=Goku+SSJ",
+            "materiais_usados": ["Marcador Copic", "Caneta Nanquim 0.5"],
+            "likes": 12,
+            "comentarios": [
+                {
+                    "autor": "Pedro",
+                    "texto": "Ficou incrível o cabelo dourado!",
+                    "data": "2026-07-15"
+                }
+            ],
             "comercial": {
                 "disponivel_venda": false,
                 "preco": 0.00,
@@ -46,9 +46,9 @@
             "likes": 15,
             "comentarios": [
                 {
-                "autor": "João",
-                "texto": "Muito bom o detalhe da camisa!",
-                "data": "2026-07-10"
+                    "autor": "João",
+                    "texto": "Muito bom o detalhe da camisa!",
+                    "data": "2026-07-10"
                 }
             ],
             "comercial": {
@@ -82,9 +82,9 @@
             "likes": 25,
             "comentarios": [
                 {
-                "autor": "Maria",
-                "texto": "A teia ficou perfeita!",
-                "data": "2026-07-18"
+                    "autor": "Maria",
+                    "texto": "A teia ficou perfeita!",
+                    "data": "2026-07-18"
                 }
             ],
             "comercial": {
@@ -93,7 +93,7 @@
                 "id_produto_asaas": ""
             }
         },
-            {
+        {
             "id": "desenho-006",
             "titulo": "Tigre na Selva",
             "categoria": "Mundo Animal / Natureza",
@@ -117,11 +117,11 @@
             "materiais_usados": ["Canetinha Hidrocor", "Papel Sulfite"],
             "likes": 30,
             "comentarios": [
-            {
-                "autor": "Ana",
-                "texto": "Muito engraçado!",
-                "data": "2026-07-12"
-            }
+                {
+                    "autor": "Ana",
+                    "texto": "Muito engraçado!",
+                    "data": "2026-07-12"
+                }
             ],
             "comercial": {
                 "disponivel_venda": false,
@@ -143,6 +143,211 @@
                 "preco": 0.00,
                 "id_produto_asaas": ""
             }
+        }
+    ],
+
+    "aulas": [
+        {
+            "id": "aula-001",
+            "titulo": "Como Desenhar Olhos de Anime",
+            "descricao": "Aprenda o passo a passo para criar olhos expressivos no estilo anime, desde o formato básico até os detalhes de brilho e sombra.",
+            "categoria_aula": "Técnicas Básicas",
+            "imagem_capa": "https://placehold.co/400x300/3B82F6/FFFFFF?text=Olhos+Anime",
+            "conteudo": [
+                {
+                    "tipo": "texto",
+                    "titulo": "Passo 1: O Formato Básico",
+                    "texto": "Comece desenhando um círculo leve com lápis. Este será o contorno do olho. Não aperte muito o lápis, pois vamos apagar depois. O tamanho do círculo define se o olho será grande (estilo shonen) ou mais realista (estilo seinen)."
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/E0E7FF/3B82F6?text=Passo+1:+Círculo+Básico",
+                    "legenda": "Desenhe um círculo leve como base do olho"
+                },
+                {
+                    "tipo": "texto",
+                    "titulo": "Passo 2: A Íris e a Pupila",
+                    "texto": "Dentro do círculo, desenhe outro círculo menor para a íris. No centro, faça um círculo ainda menor para a pupila. Deixe um pequeno espaço branco no topo da íris — isso dá mais realismo ao olho."
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/E0E7FF/3B82F6?text=Passo+2:+Íris+e+Pupila",
+                    "legenda": "Adicione íris, pupila e reflexo de luz"
+                },
+                {
+                    "tipo": "texto",
+                    "titulo": "Passo 3: Brilho e Sombra",
+                    "texto": "O segredo dos olhos de anime está no brilho! Desenhe um círculo branco (reflexo de luz) no canto superior da íris. Preencha a pupila de preto e faça um degradê na íris, mais escuro nas bordas e mais claro no centro."
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/E0E7FF/3B82F6?text=Passo+3:+Brilho+e+Sombra",
+                    "legenda": "Adicione brilho e sombra para dar vida ao olho"
+                },
+                {
+                    "tipo": "texto",
+                    "titulo": "Passo 4: Cílios e Sobrancelha",
+                    "texto": "Desenhe os cílios superiores grossos e curvados para cima. Os cílios inferiores são mais finos. Acima do olho, desenhe a sobrancelha com traços firmes. A posição da sobrancelha muda a expressão do personagem!"
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/E0E7FF/3B82F6?text=Passo+4:+Cílios+e+Sobrancelha",
+                    "legenda": "Finalize com cílios e sobrancelha"
+                }
+            ],
+            "ordem": 1,
+            "ativo": true
+        },
+        {
+            "id": "aula-002",
+            "titulo": "Sombreamento com Lápis de Cor",
+            "descricao": "Técnicas de sombreamento para dar volume e profundidade aos seus desenhos usando lápis de cor.",
+            "categoria_aula": "Técnicas Básicas",
+            "imagem_capa": "https://placehold.co/400x300/22C55E/FFFFFF?text=Sombreamento",
+            "conteudo": [
+                {
+                    "tipo": "texto",
+                    "titulo": "Técnica do Degradê",
+                    "texto": "A técnica do degradê é a base do sombreamento. Comece pressionando forte o lápis em uma área e vá diminuindo a pressão gradualmente. Use movimentos circulares suaves para não deixar marcas de traço aparentes."
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/DCFCE7/22C55E?text=Técnica+do+Degradê",
+                    "legenda": "Pratique o degradê de claro para escuro"
+                },
+                {
+                    "tipo": "texto",
+                    "titulo": "Sobreposição de Cores",
+                    "texto": "Para criar novas cores, sobreponha camadas leves de lápis de cor diferente. Comece sempre com a cor mais clara e vá adicionando as mais escuras. Nunca pressione muito na primeira camada!"
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/DCFCE7/22C55E?text=Sobreposição+de+Cores",
+                    "legenda": "Sobreposição cria cores novas e efeitos incríveis"
+                }
+            ],
+            "ordem": 2,
+            "ativo": true
+        },
+        {
+            "id": "aula-003",
+            "titulo": "Proporções do Rosto Humano",
+            "descricao": "Aprenda as proporções corretas do rosto humano para desenhar personagens mais realistas.",
+            "categoria_aula": "Anatomia",
+            "imagem_capa": "https://placehold.co/400x300/F59E0B/FFFFFF?text=Proporções+Rosto",
+            "conteudo": [
+                {
+                    "tipo": "texto",
+                    "titulo": "A Regra dos Terços",
+                    "texto": "O rosto humano pode ser dividido em três partes iguais: da testa até a sobrancelha, da sobrancelha até o nariz, e do nariz até o queixo. Use linhas guia leves para marcar essas divisões."
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/FEF3C7/F59E0B?text=Regra+dos+Terços",
+                    "legenda": "Divida o rosto em três partes iguais"
+                },
+                {
+                    "tipo": "texto",
+                    "titulo": "Posição dos Olhos",
+                    "texto": "Os olhos ficam na linha do meio da cabeça! Muita gente acha que ficam mais para cima, mas na verdade a testa ocupa metade do crânio. A distância entre os olhos é aproximadamente o tamanho de um olho."
+                },
+                {
+                    "tipo": "imagem",
+                    "url": "https://placehold.co/600x400/FEF3C7/F59E0B?text=Posição+dos+Olhos",
+                    "legenda": "Os olhos ficam na linha do meio da cabeça"
+                }
+            ],
+            "ordem": 3,
+            "ativo": true
+        }
+    ],
+
+    "bastidores": [
+        {
+            "id": "bastidor-001",
+            "titulo": "Meu Cantinho de Desenho",
+            "descricao": "Conheça o espaço onde crio todas as minhas artes! Uma mesa organizada, boa iluminação e muita inspiração.",
+            "imagem_capa": "https://placehold.co/400x300/3B82F6/FFFFFF?text=Meu+Cantinho",
+            "fotos": [
+                {
+                    "url": "https://placehold.co/600x400/DBEAFE/3B82F6?text=Minha+Mesa",
+                    "legenda": "Minha mesa de desenho com todos os materiais organizados"
+                },
+                {
+                    "url": "https://placehold.co/600x400/DBEAFE/3B82F6?text=Luminária",
+                    "legenda": "Luminária de mesa essencial para não cansar a vista"
+                },
+                {
+                    "url": "https://placehold.co/600x400/DBEAFE/3B82F6?text=Prateleira",
+                    "legenda": "Prateleira com livros de referência e sketchbooks"
+                },
+                {
+                    "url": "https://placehold.co/600x400/DBEAFE/3B82F6?text=Inspirações",
+                    "legenda": "Parede com posters e inspirações dos meus artistas favoritos"
+                }
+            ],
+            "ordem": 1,
+            "ativo": true
+        },
+        {
+            "id": "bastidor-002",
+            "titulo": "Meus Materiais Favoritos",
+            "descricao": "Uma tour pela minha coleção de materiais de arte. Cada um tem uma história especial!",
+            "imagem_capa": "https://placehold.co/400x300/EF4444/FFFFFF?text=Materiais",
+            "fotos": [
+                {
+                    "url": "https://placehold.co/600x400/FEE2E2/EF4444?text=Canetas+Copic",
+                    "legenda": "Minha coleção de marcadores Copic — meus favoritos!"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEE2E2/EF4444?text=Lápis+de+Cor",
+                    "legenda": "Lápis de cor Faber-Castell com 60 cores"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEE2E2/EF4444?text=Papeis",
+                    "legenda": "Diferentes tipos de papel: Canson, sulfite e sketchbook"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEE2E2/EF4444?text=Borracha+e+Apontador",
+                    "legenda": "Borracha branca e apontador de precisão"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEE2E2/EF4444?text=Régua+e+Compasso",
+                    "legenda": "Régua, esquadro e compasso para desenhos técnicos"
+                }
+            ],
+            "ordem": 2,
+            "ativo": true
+        },
+        {
+            "id": "bastidor-003",
+            "titulo": "Processo de Criação",
+            "descricao": "Veja como um desenho nasce do rascunho até a arte finalizada!",
+            "imagem_capa": "https://placehold.co/400x300/F59E0B/FFFFFF?text=Processo",
+            "fotos": [
+                {
+                    "url": "https://placehold.co/600x400/FEF3C7/F59E0B?text=Rascunho",
+                    "legenda": "Passo 1: Rascunho leve com lápis 2B"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEF3C7/F59E0B?text=Line+Art",
+                    "legenda": "Passo 2: Contorno final com caneta nanquim"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEF3C7/F59E0B?text=Coloração",
+                    "legenda": "Passo 3: Primeira camada de cores"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEF3C7/F59E0B?text=Sombreamento",
+                    "legenda": "Passo 4: Sombreamento e detalhes"
+                },
+                {
+                    "url": "https://placehold.co/600x400/FEF3C7/F59E0B?text=Finalizado",
+                    "legenda": "Passo 5: Arte finalizada com assinatura!"
+                }
+            ],
+            "ordem": 3,
+            "ativo": true
         }
     ]
 }

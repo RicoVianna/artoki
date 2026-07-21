@@ -68,7 +68,7 @@
         </ul>
     </nav>
 
-    <!-- ============================================
+        <!-- ============================================
          CONTEÚDO PRINCIPAL (ABAS)
          ============================================ -->
     <main class="conteudo-principal">
@@ -95,7 +95,6 @@
                         <label for="filtro-ano">Ano:</label>
                         <select id="filtro-ano">
                             <option value="todos">Todos os Anos</option>
-                            <!-- Os anos serão preenchidos automaticamente pelo JavaScript -->
                         </select>
                     </div>
                 </div>
@@ -113,45 +112,8 @@
                 <h2>📚 Aprenda Comigo</h2>
                 <p>Dicas rápidas para você começar a desenhar também!</p>
             </div>
-            <div class="grid-dicas">
-                <article class="card-dica">
-                    <div class="dica-icone">✏️</div>
-                    <h3>Comece com Lápis</h3>
-                    <p>Sempre use lápis para fazer o rascunho antes de passar a caneta. Assim você pode apagar e corrigir sem medo!</p>
-                </article>
-                <article class="card-dica">
-                    <div class="dica-icone">👁️</div>
-                    <h3>Observe Antes de Desenhar</h3>
-                    <p>Olhe bem para o que você quer desenhar. Preste atenção nas formas, tamanhos e proporções antes de colocar no papel.</p>
-                </article>
-                <article class="card-dica">
-                    <div class="dica-icone">🔄</div>
-                    <h3>Pratique Todo Dia</h3>
-                    <p>Desenhe um pouquinho todos os dias, mesmo que seja só 15 minutos. A prática é o segredo para melhorar!</p>
-                </article>
-                <article class="card-dica">
-                    <div class="dica-icone">🎨</div>
-                    <h3>Use Referências</h3>
-                    <p>Olhe fotos e imagens na internet para se inspirar. Não é copiar — é aprender com o que já existe!</p>
-                </article>
-                <article class="card-dica">
-                    <div class="dica-icone">✨</div>
-                    <h3>Não Tenha Medo de Errar</h3>
-                    <p>Cada rabisco errado te ensina algo novo. Os melhores artistas do mundo erram o tempo todo!</p>
-                </article>
-                <article class="card-dica">
-                    <div class="dica-icone">🖌️</div>
-                    <h3>Cuide dos Seus Materiais</h3>
-                    <p>Guarde suas canetas com a tampa fechada e seus lápis apontados. Materiais bem cuidados duram mais!</p>
-                </article>
-            </div>
-            <div class="secao-videos">
-                <h3>🎥 Vídeos em Breve!</h3>
-                <p>Em breve teremos vídeos curtos mostrando o passo a passo dos desenhos. Fique ligado!</p>
-                <div class="placeholder-video">
-                    <span>▶️</span>
-                    <p>Em breve...</p>
-                </div>
+            <div class="grid-dicas" id="grid-dicas">
+                <!-- Preenchido dinamicamente pelo JavaScript -->
             </div>
         </section>
 
@@ -161,31 +123,8 @@
                 <h2>🎬 Bastidores</h2>
                 <p>Um pouquinho do meu cantinho de criação e da minha rotina!</p>
             </div>
-            <div class="grid-bastidores">
-                <figure class="foto-bastidores">
-                    <img src="https://placehold.co/400x300/3B82F6/FFFFFF?text=Meu+Cantinho" alt="Cantinho de criação">
-                    <figcaption>🖌️ Meu cantinho de desenho</figcaption>
-                </figure>
-                <figure class="foto-bastidores">
-                    <img src="https://placehold.co/400x300/22C55E/FFFFFF?text=Rascunhos" alt="Rascunhos">
-                    <figcaption>✏️ Rascunhos e ideias no papel</figcaption>
-                </figure>
-                <figure class="foto-bastidores">
-                    <img src="https://placehold.co/400x300/FACC15/333333?text=Materiais" alt="Materiais de arte">
-                    <figcaption>🎨 Minha coleção de materiais</figcaption>
-                </figure>
-                <figure class="foto-bastidores">
-                    <img src="https://placehold.co/400x300/EF4444/FFFFFF?text=Processo" alt="Processo de desenho">
-                    <figcaption>📸 O processo de criação</figcaption>
-                </figure>
-                <figure class="foto-bastidores">
-                    <img src="https://placehold.co/400x300/8B5CF6/FFFFFF?text=Prêmios" alt="Conquistas">
-                    <figcaption>🏆 Conquistas e reconhecimentos</figcaption>
-                </figure>
-                <figure class="foto-bastidores">
-                    <img src="https://placehold.co/400x300/F97316/FFFFFF?text=Família" alt="Família">
-                    <figcaption>👨‍👩‍👧 Família apoiando a arte</figcaption>
-                </figure>
+            <div class="grid-bastidores" id="grid-bastidores">
+                <!-- Preenchido dinamicamente pelo JavaScript -->
             </div>
         </section>
 
@@ -253,122 +192,252 @@
                     <button class="btn-sair" id="btn-sair">🚪 Sair</button>
                 </div>
 
-                <!-- Formulário de Adicionar/Editar -->
-                <div class="card-formulario-admin">
-                    <h3 id="titulo-formulario">➕ Adicionar Novo Desenho</h3>
+                <!-- Menu de Abas do Admin -->
+                <nav class="menu-admin-abas">
+                    <button class="btn-aba-admin ativo" data-aba-admin="desenhos">🎨 Desenhos</button>
+                    <button class="btn-aba-admin" data-aba-admin="aulas">📚 Aulas</button>
+                    <button class="btn-aba-admin" data-aba-admin="bastidores">🎬 Bastidores</button>
+                </nav>
+
+                <!-- ABA ADMIN: DESENHOS -->
+                <div class="aba-admin ativa" id="aba-admin-desenhos">
                     
-                    <form class="formulario-admin" id="formulario-admin">
-                        <input type="hidden" id="editando-id" value="">
+                    <!-- Formulário de Adicionar/Editar Desenho -->
+                    <div class="card-formulario-admin">
+                        <h3 id="titulo-formulario">➕ Adicionar Novo Desenho</h3>
                         
-                        <div class="grid-formulario">
-                            <div class="campo">
-                                <label for="admin-titulo">Título do Desenho:</label>
-                                <input type="text" id="admin-titulo" placeholder="Ex: Goku Super Saiyajin" required>
+                        <form class="formulario-admin" id="formulario-admin">
+                            <input type="hidden" id="editando-id" value="">
+                            
+                            <div class="grid-formulario">
+                                <div class="campo">
+                                    <label for="admin-titulo">Título do Desenho:</label>
+                                    <input type="text" id="admin-titulo" placeholder="Ex: Goku Super Saiyajin" required>
+                                </div>
+                                
+                                <div class="campo">
+                                    <label for="admin-categoria">Categoria:</label>
+                                    <select id="admin-categoria" required>
+                                        <option value="">Selecione...</option>
+                                        <option value="Anime">Anime</option>
+                                        <option value="Religiosos">Religiosos</option>
+                                        <option value="Esportes">Esportes</option>
+                                        <option value="Paisagens">Paisagens</option>
+                                        <option value="Heróis e Aventuras">Heróis e Aventuras</option>
+                                        <option value="Mundo Animal / Natureza">Mundo Animal / Natureza</option>
+                                        <option value="Cartoons e Fantasia">Cartoons e Fantasia</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="campo">
+                                    <label for="admin-ano">Ano:</label>
+                                    <input type="number" id="admin-ano" placeholder="2025" min="2020" max="2030" required>
+                                </div>
+
+                                <div class="campo">
+                                    <label for="admin-orientacao">Orientação da Folha:</label>
+                                    <select id="admin-orientacao">
+                                        <option value="paisagem">Deitada (Paisagem)</option>
+                                        <option value="retrato">Em Pé (Retrato)</option>
+                                        <option value="quadrado">Quadrada</option>
+                                    </select>
+                                </div>
+
+                                <div class="campo">
+                                    <label for="admin-tamanho">Tamanho da Folha:</label>
+                                    <select id="admin-tamanho">
+                                        <option value="A4">A4 (padrão)</option>
+                                        <option value="A3">A3</option>
+                                        <option value="A5">A5</option>
+                                        <option value="oficio">Ofício</option>
+                                        <option value="caderno">Folha de Caderno</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="campo campo-full">
+                                    <label for="admin-imagem">Imagem do Desenho:</label>
+                                    <input type="file" id="admin-imagem" accept="image/*">
+                                    <p class="campo-ajuda">📷 Selecione uma foto do desenho (será convertida automaticamente)</p>
+                                    <div class="preview-imagem" id="preview-imagem"></div>
+                                </div>
+                                
+                                <div class="campo campo-full">
+                                    <label for="admin-materiais">Materiais Usados (separados por vírgula):</label>
+                                    <input type="text" id="admin-materiais" placeholder="Ex: Marcador Copic, Caneta Nanquim 0.5" required>
+                                </div>
+
+                                <div class="campo">
+                                    <label for="admin-preco">Preço (R$):</label>
+                                    <input type="number" id="admin-preco" placeholder="0.00" min="0" step="0.01">
+                                </div>
+
+                                <div class="campo">
+                                    <label for="admin-venda">
+                                        <input type="checkbox" id="admin-venda" style="width: auto; display: inline-block; margin-right: 0.5rem;">
+                                        Disponível para venda
+                                    </label>
+                                </div>
                             </div>
                             
-                            <div class="campo">
-                                <label for="admin-categoria">Categoria:</label>
-                                <select id="admin-categoria" required>
-                                    <option value="">Selecione...</option>
-                                    <option value="Anime">Anime</option>
-                                    <option value="Religiosos">Religiosos</option>
-                                    <option value="Esportes">Esportes</option>
-                                    <option value="Paisagens">Paisagens</option>
-                                    <option value="Heróis e Aventuras">Heróis e Aventuras</option>
-                                    <option value="Mundo Animal / Natureza">Mundo Animal / Natureza</option>
-                                    <option value="Cartoons e Fantasia">Cartoons e Fantasia</option>
-                                </select>
+                            <div class="botoes-formulario">
+                                <button type="submit" class="btn-salvar" id="btn-salvar">💾 Salvar Desenho</button>
+                                <button type="button" class="btn-cancelar" id="btn-cancelar" style="display: none;">❌ Cancelar Edição</button>
                             </div>
-                            
-                            <div class="campo">
-                                <label for="admin-ano">Ano:</label>
-                                <input type="number" id="admin-ano" placeholder="2025" min="2020" max="2030" required>
-                            </div>
-
-                            <!-- NOVO: Orientação da folha -->
-                            <div class="campo">
-                                <label for="admin-orientacao">Orientação da Folha:</label>
-                                <select id="admin-orientacao">
-                                    <option value="paisagem">Deitada (Paisagem)</option>
-                                    <option value="retrato">Em Pé (Retrato)</option>
-                                    <option value="quadrado">Quadrada</option>
-                                </select>
-                            </div>
-
-                            <!-- NOVO: Tamanho da folha -->
-                            <div class="campo">
-                                <label for="admin-tamanho">Tamanho da Folha:</label>
-                                <select id="admin-tamanho">
-                                    <option value="A4">A4 (padrão)</option>
-                                    <option value="A3">A3</option>
-                                    <option value="A5">A5</option>
-                                    <option value="oficio">Ofício</option>
-                                    <option value="caderno">Folha de Caderno</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                            </div>
-                            
-                            <div class="campo campo-full">
-                                <label for="admin-imagem">Imagem do Desenho:</label>
-                                <input type="file" id="admin-imagem" accept="image/*">
-                                <p class="campo-ajuda">📷 Selecione uma foto do desenho (será convertida automaticamente)</p>
-                                <div class="preview-imagem" id="preview-imagem"></div>
-                            </div>
-                            
-                            <div class="campo campo-full">
-                                <label for="admin-materiais">Materiais Usados (separados por vírgula):</label>
-                                <input type="text" id="admin-materiais" placeholder="Ex: Marcador Copic, Caneta Nanquim 0.5" required>
-                            </div>
-
-                            <div class="campo">
-                                <label for="admin-preco">Preço (R$):</label>
-                                <input type="number" id="admin-preco" placeholder="0.00" min="0" step="0.01">
-                            </div>
-
-                            <div class="campo">
-                                <label for="admin-venda">
-                                    <input type="checkbox" id="admin-venda" style="width: auto; display: inline-block; margin-right: 0.5rem;">
-                                    Disponível para venda
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <div class="botoes-formulario">
-                            <button type="submit" class="btn-salvar" id="btn-salvar">💾 Salvar Desenho</button>
-                            <button type="button" class="btn-cancelar" id="btn-cancelar" style="display: none;">❌ Cancelar Edição</button>
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Lista de Desenhos no Painel -->
-                <div class="secao-lista-admin">
-                    <h3>📋 Desenhos Cadastrados</h3>
-                    <div class="tabela-admin-container">
-                        <table class="tabela-admin" id="tabela-admin">
-                            <thead>
-                                <tr>
-                                    <th>Imagem</th>
-                                    <th>Título</th>
-                                    <th>Categoria</th>
-                                    <th>Ano</th>
-                                    <th>Orientação</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tabela-admin-body">
-                                <!-- Preenchido pelo JS -->
-                            </tbody>
-                        </table>
+                        </form>
                     </div>
-                    <p class="sem-desenhos-admin" id="sem-desenhos-admin" style="display: none;">
-                        😕 Nenhum desenho cadastrado ainda.
-                    </p>
+
+                    <!-- Lista de Desenhos no Painel -->
+                    <div class="secao-lista-admin">
+                        <h3>📋 Desenhos Cadastrados</h3>
+                        <div class="tabela-admin-container">
+                            <table class="tabela-admin" id="tabela-admin">
+                                <thead>
+                                    <tr>
+                                        <th>Imagem</th>
+                                        <th>Título</th>
+                                        <th>Categoria</th>
+                                        <th>Ano</th>
+                                        <th>Orientação</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabela-admin-body">
+                                    <!-- Preenchido pelo JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="sem-desenhos-admin" id="sem-desenhos-admin" style="display: none;">
+                            😕 Nenhum desenho cadastrado ainda.
+                        </p>
+                    </div>
                 </div>
 
+                <!-- ABA ADMIN: AULAS -->
+                <div class="aba-admin" id="aba-admin-aulas">
+                    
+                    <div class="cabecalho-aba-interna">
+                        <h3>📚 Gerenciar Aulas</h3>
+                        <p>Adicione, edite ou remova aulas de desenho.</p>
+                    </div>
+
+                    <!-- Formulário de Aula -->
+                    <div class="card-formulario-admin">
+                        <h3 id="titulo-formulario-aula">➕ Adicionar Nova Aula</h3>
+                        
+                        <form class="formulario-admin" id="formulario-aula">
+                            <input type="hidden" id="editando-id-aula" value="">
+                            
+                            <div class="grid-formulario">
+                                <div class="campo">
+                                    <label for="aula-titulo">Título da Aula:</label>
+                                    <input type="text" id="aula-titulo" placeholder="Ex: Como Desenhar Olhos de Anime" required>
+                                </div>
+                                
+                                <div class="campo">
+                                    <label for="aula-categoria">Categoria:</label>
+                                    <input type="text" id="aula-categoria" placeholder="Ex: Técnicas Básicas" required>
+                                </div>
+                                
+                                <div class="campo campo-full">
+                                    <label for="aula-descricao">Descrição:</label>
+                                    <textarea id="aula-descricao" rows="3" placeholder="Breve descrição do que será ensinado..." required></textarea>
+                                </div>
+                                
+                                <div class="campo campo-full">
+                                    <label for="aula-capa">Imagem de Capa:</label>
+                                    <input type="file" id="aula-capa" accept="image/*">
+                                    <p class="campo-ajuda">📷 Capa que aparece no card da aula</p>
+                                    <div class="preview-imagem" id="preview-capa-aula"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="botoes-formulario">
+                                <button type="submit" class="btn-salvar" id="btn-salvar-aula">💾 Salvar Aula</button>
+                                <button type="button" class="btn-cancelar" id="btn-cancelar-aula" style="display: none;">❌ Cancelar Edição</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Lista de Aulas -->
+                    <div class="secao-lista-admin">
+                        <h3>📋 Aulas Cadastradas</h3>
+                        <div class="tabela-admin-container">
+                            <table class="tabela-admin" id="tabela-aulas">
+                                <thead>
+                                    <tr>
+                                        <th>Capa</th>
+                                        <th>Título</th>
+                                        <th>Categoria</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabela-aulas-body">
+                                    <!-- Preenchido pelo JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="sem-desenhos-admin" id="sem-aulas-admin" style="display: none;">
+                            😕 Nenhuma aula cadastrada ainda.
+                        </p>
+                    </div>
+                                        <!-- Editor de Conteúdo da Aula (aparece ao clicar em "Editar Conteúdo") -->
+                    <div class="card-formulario-admin" id="editor-conteudo-aula" style="display: none;">
+                        <h3>✏️ Editar Conteúdo da Aula</h3>
+                        <p id="titulo-aula-edicao" style="color: #3B82F6; font-weight: 800; margin-bottom: 1rem;"></p>
+                        
+                        <div id="lista-passos-aula">
+                            <!-- Passos existentes aparecem aqui -->
+                        </div>
+                        
+                        <div class="adicionar-passo">
+                            <h4>➕ Adicionar Novo Passo</h4>
+                            <div class="campo">
+                                <label>Tipo do Passo:</label>
+                                <select id="passo-tipo">
+                                    <option value="texto">📝 Texto</option>
+                                    <option value="imagem">🖼️ Imagem</option>
+                                    <option value="video">🎥 Vídeo</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label>Título do Passo:</label>
+                                <input type="text" id="passo-titulo" placeholder="Ex: Passo 1: O Formato Básico">
+                            </div>
+                            <div class="campo campo-full">
+                                <label>Conteúdo / URL:</label>
+                                <textarea id="passo-conteudo" rows="3" placeholder="Para texto: digite o conteúdo. Para imagem/vídeo: cole a URL."></textarea>
+                            </div>
+                            <div class="campo campo-full" id="campo-legenda-passo">
+                                <label>Legenda (para imagens):</label>
+                                <input type="text" id="passo-legenda" placeholder="Descrição da imagem">
+                            </div>
+                            <button type="button" class="btn-salvar" id="btn-adicionar-passo">➕ Adicionar Passo</button>
+                        </div>
+                        
+                        <div class="botoes-formulario" style="margin-top: 1.5rem;">
+                            <button type="button" class="btn-cancelar" id="btn-fechar-editor">✅ Finalizar Edição</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ABA ADMIN: BASTIDORES (placeholder para próximo passo) -->
+                <div class="aba-admin" id="aba-admin-bastidores">
+                    <div class="cabecalho-aba-interna">
+                        <h3>🎬 Gerenciar Bastidores</h3>
+                        <p>Adicione, edite ou remova conteúdo de bastidores.</p>
+                    </div>
+                    <div class="placeholder-admin">
+                        <p>🚧 Em construção...</p>
+                        <p>Esta área será implementada no próximo passo.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
+
+
 
     <!-- ============================================
          RODAPÉ

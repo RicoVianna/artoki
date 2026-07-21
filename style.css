@@ -188,7 +188,7 @@ body {
 }
 
 .aba.ativa {
-    display: block;
+    display: block !important;
 }
 
 @keyframes fadeIn {
@@ -1675,4 +1675,643 @@ body {
     .card-imagem.quadrado {
         height: 240px;
     }
+}
+
+/* ============================================
+   NOVOS COMPONENTES: AULAS E BASTIDORES
+   Cards Clicáveis e Páginas de Conteúdo
+   ============================================ */
+
+/* ============================================
+   CARDS CLICÁVEIS (Aulas e Bastidores)
+   ============================================ */
+
+.card-clicavel {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+}
+
+.card-clicavel::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(59, 130, 246, 0.05);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.card-clicavel:hover::after {
+    opacity: 1;
+}
+
+.card-clicavel:hover {
+    transform: translateY(-8px) rotate(1deg) scale(1.02);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Overlay com instrução "Clique" */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(59, 130, 246, 0.9);
+    color: #FFFFFF;
+    padding: 0.8rem;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    font-weight: 800;
+    font-size: 0.95rem;
+    border-radius: 0 0 16px 16px;
+}
+
+.card-clicavel:hover .card-overlay {
+    transform: translateY(0);
+}
+
+.btn-ver-conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+/* Badge de categoria nas aulas */
+.badge-categoria-aula {
+    display: inline-block;
+    background-color: #DBEAFE;
+    color: #1D4ED8;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-top: 0.8rem;
+}
+
+/* Badge de quantidade de fotos nos bastidores */
+.badge-fotos {
+    display: block;
+    background-color: #FEF3C7;
+    color: #92400E;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    margin-top: 0.5rem;
+}
+
+/* ============================================
+   BOTÃO VOLTAR (Páginas de Conteúdo)
+   ============================================ */
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    background-color: #F3F4F6;
+    color: #4B5563;
+    border: 2px solid #E5E7EB;
+    border-radius: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.btn-voltar:hover {
+    background-color: #DBEAFE;
+    color: #1D4ED8;
+    border-color: #3B82F6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* ============================================
+   CONTEÚDO DE AULA (Sequência Passo a Passo)
+   ============================================ */
+
+.conteudo-aula-sequencia {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.conteudo-sequencia {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+}
+
+.conteudo-sequencia:hover {
+    border-color: #FACC15;
+    transform: translateX(5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Número do passo (bolinha colorida) */
+.numero-passo {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    animation: flutuar 2s ease-in-out infinite;
+}
+
+/* Variações de cor para os passos */
+.conteudo-sequencia:nth-child(2n) .numero-passo {
+    background-color: #22C55E;
+    box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.conteudo-sequencia:nth-child(3n) .numero-passo {
+    background-color: #EF4444;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+.conteudo-sequencia:nth-child(4n) .numero-passo {
+    background-color: #F59E0B;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.conteudo-sequencia:nth-child(5n) .numero-passo {
+    background-color: #EC4899;
+    box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+}
+
+/* Conteúdo de texto */
+.conteudo-sequencia.texto .conteudo-texto {
+    flex: 1;
+}
+
+.conteudo-sequencia.texto h4 {
+    color: #1F2937;
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.conteudo-sequencia.texto p {
+    color: #4B5563;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* Conteúdo de imagem */
+.conteudo-sequencia.imagem {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.conteudo-sequencia.imagem figure {
+    margin: 0;
+    width: 100%;
+}
+
+.conteudo-sequencia.imagem img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 14px;
+    cursor: zoom-in;
+    transition: transform 0.3s ease;
+}
+
+.conteudo-sequencia.imagem img:hover {
+    transform: scale(1.02);
+}
+
+.conteudo-sequencia.imagem figcaption {
+    text-align: center;
+    color: #6B7280;
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-top: 0.8rem;
+    font-style: italic;
+}
+
+/* Conteúdo de vídeo */
+.conteudo-sequencia.video .video-container {
+    flex: 1;
+    background-color: #F3F4F6;
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    border: 3px dashed #DBEAFE;
+}
+
+.conteudo-sequencia.video p {
+    color: #3B82F6;
+    font-weight: 800;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.video-placeholder {
+    color: #9CA3AF;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ============================================
+   GALERIA DE FOTOS DO BASTIDOR
+   ============================================ */
+
+.galeria-bastidor-fotos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+}
+
+.foto-galeria-bastidor {
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    margin: 0;
+    transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: zoom-in;
+    position: relative;
+    border: 4px solid transparent;
+}
+
+.foto-galeria-bastidor:hover {
+    transform: translateY(-8px) rotate(1deg) scale(1.02);
+    border-color: #FACC15;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.foto-galeria-bastidor img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.foto-galeria-bastidor:hover img {
+    transform: scale(1.08);
+}
+
+.foto-galeria-bastidor figcaption {
+    padding: 1rem;
+    text-align: center;
+    font-weight: 700;
+    color: #4B5563;
+    font-size: 0.95rem;
+    background-color: #F9FAFB;
+}
+
+/* Número da foto */
+.numero-foto {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+/* ============================================
+   ABA DE CONTEÚDO DINÂMICO
+   ============================================ */
+
+#aba-conteudo-dinamico {
+    animation: fadeIn 0.4s ease;
+}
+
+#aba-conteudo-dinamico .cabecalho-aba {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: 2rem;
+    margin: 0 1rem 2rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border: 3px solid #FACC15;
+    position: relative;
+}
+
+#aba-conteudo-dinamico .cabecalho-aba::after {
+    content: '✨';
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    animation: brilhar 2s ease-in-out infinite;
+}
+
+/* ============================================
+   RESPONSIVIDADE DOS NOVOS COMPONENTES
+   ============================================ */
+
+@media (max-width: 768px) {
+    .card-overlay {
+        transform: translateY(0);
+        padding: 0.6rem;
+        font-size: 0.85rem;
+        background-color: rgba(59, 130, 246, 0.85);
+    }
+    
+    .conteudo-sequencia {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.2rem;
+    }
+    
+    .numero-passo {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+    
+    .conteudo-sequencia.imagem img {
+        max-height: 280px;
+    }
+    
+    .galeria-bastidor-fotos {
+        grid-template-columns: 1fr;
+    }
+    
+    .foto-galeria-bastidor img {
+        height: 200px;
+    }
+    
+    .conteudo-aula-sequencia {
+        padding: 0 0.5rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .conteudo-sequencia {
+        padding: 1rem;
+    }
+    
+    .numero-passo {
+        width: 34px;
+        height: 34px;
+        font-size: 0.9rem;
+    }
+    
+    .conteudo-sequencia.texto h4 {
+        font-size: 1rem;
+    }
+    
+    .conteudo-sequencia.texto p {
+        font-size: 0.9rem;
+    }
+    
+    .btn-voltar {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+    }
+}
+
+/* ============================================
+   FIX: Esconde aba dinâmica quando outra aba está ativa
+   ============================================ */
+
+/* Quando QUALQUER aba padrão está ativa, esconde a aba dinâmica */
+.aba.ativa ~ #aba-conteudo-dinamico {
+    display: none !important;
+}
+
+/* A aba dinâmica só aparece quando NENHUMA aba padrão está ativa */
+#aba-conteudo-dinamico:not(.ativa) {
+    display: none;
+}
+
+#aba-conteudo-dinamico.ativa {
+    display: block;
+}
+
+/* ============================================
+   ABAS INTERNAS DO PAINEL ADMIN
+   ============================================ */
+
+.menu-admin-abas {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-aba-admin {
+    padding: 0.8rem 1.5rem;
+    background-color: #F3F4F6;
+    color: #6B7280;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-aba-admin:hover {
+    background-color: #DBEAFE;
+    color: #1D4ED8;
+    border-color: #3B82F6;
+    transform: translateY(-2px);
+}
+
+.btn-aba-admin.ativo {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    border-color: #3B82F6;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Esconde todas as abas admin por padrão */
+.aba-admin {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Mostra apenas a aba ativa */
+.aba-admin.ativa {
+    display: block;
+}
+
+/* Cabeçalho interno das abas */
+.cabecalho-aba-interna {
+    text-align: center;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.cabecalho-aba-interna h3 {
+    color: #3B82F6;
+    font-size: 1.3rem;
+    font-weight: 900;
+    margin-bottom: 0.3rem;
+}
+
+.cabecalho-aba-interna p {
+    color: #6B7280;
+    font-size: 0.95rem;
+}
+
+/* Placeholder das abas em construção */
+.placeholder-admin {
+    text-align: center;
+    padding: 3rem;
+    background-color: #F9FAFB;
+    border-radius: 20px;
+    border: 3px dashed #E5E7EB;
+    color: #9CA3AF;
+}
+
+.placeholder-admin p:first-child {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .menu-admin-abas {
+        flex-direction: column;
+    }
+    
+    .btn-aba-admin {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   EDITOR DE CONTEÚDO DA AULA
+   ============================================ */
+
+#editor-conteudo-aula {
+    margin-top: 2rem;
+    border-color: #FACC15;
+}
+
+#editor-conteudo-aula.ativo {
+    display: block !important;
+}
+
+#lista-passos-aula {
+    margin-bottom: 2rem;
+}
+
+.passo-aula-item {
+    background-color: #F9FAFB;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3B82F6;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.passo-aula-item .numero-passo-lista {
+    background-color: #3B82F6;
+    color: #FFFFFF;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.passo-aula-item .conteudo-passo-lista {
+    flex: 1;
+}
+
+.passo-aula-item .conteudo-passo-lista h5 {
+    color: #1F2937;
+    font-weight: 800;
+    margin-bottom: 0.3rem;
+}
+
+.passo-aula-item .conteudo-passo-lista p {
+    color: #6B7280;
+    font-size: 0.9rem;
+}
+
+.passo-aula-item .tipo-passo-badge {
+    background-color: #DBEAFE;
+    color: #1D4ED8;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.adicionar-passo {
+    background-color: #F9FAFB;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 2px dashed #E5E7EB;
+}
+
+.adicionar-passo h4 {
+    color: #3B82F6;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+/* Botão de ação na tabela */
+.btn-editar-conteudo {
+    padding: 0.4rem 0.8rem;
+    background-color: #FEF3C7;
+    color: #92400E;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-editar-conteudo:hover {
+    background-color: #FACC15;
+    color: #FFFFFF;
 }
