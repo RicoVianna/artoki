@@ -15,7 +15,7 @@ let filtroCategoria = "todas";
 let filtroAno = "todos";
 const LIKES_STORAGE_KEY = "artoiki_likes";
 const DESENHOS_STORAGE_KEY = "artoiki_desenhos";
-const ADMIN_LOGADO_KEY = "artoiki_admin_logado";
+const ADMIN_LOGADO_KEY = "artoiki_admin_sessao";
 let desenhosCurtidos = carregarLikes();
 let estaEditando = false;
 let imagemBase64 = null;
@@ -58,15 +58,15 @@ function carregarDesenhosDoStorage() {
 }
 
 function verificarAdminLogado() {
-    return localStorage.getItem(ADMIN_LOGADO_KEY) === "true";
+    return sessionStorage.getItem(ADMIN_LOGADO_KEY) === "true";
 }
 
 function fazerLoginAdmin() {
-    localStorage.setItem(ADMIN_LOGADO_KEY, "true");
+    sessionStorage.setItem(ADMIN_LOGADO_KEY, "true");
 }
 
 function fazerLogoutAdmin() {
-    localStorage.removeItem(ADMIN_LOGADO_KEY);
+    sessionStorage.removeItem(ADMIN_LOGADO_KEY);
 }
 
 // ============================================
